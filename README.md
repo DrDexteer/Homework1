@@ -31,19 +31,19 @@ To visualize the robot directly in RViz (without Gazebo), use the following comm
 ```
 $ ros2 launch arm_description display.launch.py
 ```
-
 This will load the robot model in RViz for inspection and visualization purposes.
-Launch the Simulation
+
+###Launch the Simulation
 Start the robotic arm in Gazebo with:
 ```
 $ ros2 launch arm_gazebo arm_world.launch.py
 ```
-Control the Robot’s Joints
+###Control the Robot’s Joints
 To test controlling the robot’s joints, you can run the arm_controller_node:
 ```
 $ ros2 run arm_control arm_controller_node
 ```
-View the Camera Image
+###View the Camera Image
 To view the camera feed from the robot in RViz, ensure you have the ros_ign_bridge set up for the camera topic:
 ```
 $ ros2 run ros_ign_bridge parameter_bridge /camera@sensor_msgs/msg/Image@gz.msgs.Image --ros-args -r /camera:=/videocamera
