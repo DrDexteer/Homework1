@@ -25,6 +25,15 @@ $ . install/setup.bash
 ```
 
 ## :white_check_mark: Usage
+Launch the Robot in RViz
+
+To visualize the robot directly in RViz (without Gazebo), use the following command:
+```
+$ ros2 launch arm_description display.launch.py
+```
+ros2 launch arm_description display.launch.py
+
+This will load the robot model in RViz for inspection and visualization purposes.
 Launch the Simulation
 Start the robotic arm in Gazebo with:
 ```
