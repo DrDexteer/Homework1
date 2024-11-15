@@ -39,12 +39,7 @@ Start the robotic arm in Gazebo with:
 $ ros2 launch arm_gazebo arm_world.launch.py
 ```
 ### Control the Robot’s Joints
-To test controlling the robot’s joints, you can run the arm_controller_node:
+To view robot with your desired configuration modify the command_msg in arm_controller_node.cpp file ,and you can launch:
 ```
-$ ros2 run arm_control arm_controller_node
-```
-### View the Camera Image
-To view the camera feed from the robot in RViz, ensure you have the ros_ign_bridge set up for the camera topic:
-```
-$ ros2 run ros_ign_bridge parameter_bridge /camera@sensor_msgs/msg/Image@gz.msgs.Image --ros-args -r /camera:=/videocamera
+$ ros2 launch arm_gazebo arm_world.launch.py
 ```
