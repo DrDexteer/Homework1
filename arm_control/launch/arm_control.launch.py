@@ -10,13 +10,7 @@ def generate_launch_description():
     use_sim_time = DeclareLaunchArgument(
         'use_sim_time', default_value='true', description='Use simulation (Gazebo) clock'
     )
-
-    arm_control_config = os.path.join(
-        get_package_share_directory('arm_control'),
-        'config',
-        'arm_control.yaml'
-    )
-    
+ 
     
     joint_state_broadcaster = Node(
         package="controller_manager",
@@ -36,8 +30,17 @@ def generate_launch_description():
         actions=[position_controller]
     )
 
+      # Spawner node for arm_controller_node
+    arm_controller_node = Node( 
+        package="arm_control", 
+        executable="arm_controller_node", 
+        name="arm_controller_node", 
+        output="screen"
+    )
+
     return LaunchDescription([
         use_sim_time,
         joint_state_broadcaster,
-        delayed_position_controller
+        delayed_position_controller,
+        arm_controller_node
     ])

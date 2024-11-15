@@ -56,17 +56,23 @@ def generate_launch_description():
         arguments=['-topic', '/robot_description', '-name', 'arm_robot', '-allow_renaming', 'true']
     )
 
-    arm_control_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('arm_control'), 'launch', 'arm_control.launch.py')
-        )
+    bridge_camera_node = Node(
+        package='ros_ign_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '/camera@sensor_msgs/msg/Image@ignition.msgs.Image',
+            '/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo',
+            '--ros-args', 
+            '-r', '/camera:=/videocamera',
+        ],
+        output='screen'
     )
     
     nodes = [
         robot_state_publisher_node,
         gazebo_ignition,
         gz_spawn_entity,
-        arm_control_launch,
+        bridge_camera_node
     ]
 
     return LaunchDescription(declared_arguments + nodes)
